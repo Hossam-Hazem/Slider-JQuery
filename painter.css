@@ -59,9 +59,45 @@ button{
 	left:0;
 	top:0;
 	visibility: hidden;
+	overflow: hidden;
+	backface-visibility: hidden;
+	transform: translate3d(0, 0, 0);
 	z-index: 1;
+}
+main{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	perspective: 1200px;
+	transform-style: preserve-3d;
+
 }
 .current{
 	visibility: visible;
+	
+}
+.SlideOut{
+	-webkit-animation: -webkit-SlideOut 1s both ease;
+	animation: SlideOut 1s both ease;
+}
+.SlideIn{
+	-webkit-animation: -webkit-SlideIn 1s both ease;
+	animation: SlideIn 1s both ease;
+}
+@keyframes SlideOut {
+	from { }
+	to {  -webkit-transform:  translateX(-100%); transform:  translateX(-100%); }
+}
+
+@-webkit-keyframes SlideOut {
+  	from{}
+	to{  -webkit-transform: translateX(-100%); }
+}
+@-webkit-keyframes SlideIn {
+	from { opacity: :0; -webkit-transform:  translateX(100%); }
+	
+}
+@keyframes SlideIn {
+	from { opacity: :0;-webkit-transform: translateX(100%); transform: translateX(100%); }
 	
 }
