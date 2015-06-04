@@ -1,5 +1,12 @@
 html, body { height: 100%;
-overflow: hidden;}
+overflow: hidden;
+background-color: #333}
+.test{
+	height:100%;
+	width:100%;
+	top:0;
+	left:0;
+}
 .nextbutton{
 	
 	position: absolute;
@@ -19,6 +26,38 @@ overflow: hidden;}
 	left: 1%;
 	
 }
+.icons{
+	position:absolute;
+	top:80%;
+	width: 100%;
+	z-index: 9999;
+	float: left;
+
+}
+
+ul{
+    width: 100%;
+    left:50%;
+    text-align: center;
+}
+li{
+	display: inline-block;
+    margin: 0 auto;
+}
+.icon{
+
+	background-image: url('icons.png');
+	width:16px;
+	height:16px;
+	overflow: hidden;
+	background-position: -7px -7px;
+	cursor: pointer;
+
+
+}
+.icon:hover{
+	background-position: -67px -7px;
+}
 button{
 	border: none;
 	font-size: 13px;
@@ -36,6 +75,7 @@ button{
 	box-shadow: 0 3px 0 rgba(0,0,0,0.1);
 	background: #fff;
 	color: #aaa;
+
 
 }
 #p0{
@@ -65,12 +105,14 @@ button{
 	transform: translate3d(0, 0, 0);
 	z-index: 1;
 }
-main{
+.main{
 	position: relative;
-	width: 100%;
-	height: 100%;
+	width: 75%;
+	height: 50%;
 	perspective: 1200px;
+	overflow: hidden;
 	transform-style: preserve-3d;
+	border-radius: 3%
 
 }
 .current{
@@ -84,6 +126,14 @@ main{
 .Next_SlideIn{
 	-webkit-animation: -webkit-Next_SlideIn 1s both ease;
 	animation: Next_SlideIn 1s both ease;
+}
+.Prev_SlideOut{
+	-webkit-animation: -webkit-Prev_SlideOut 1s both ease;
+	animation: Prev_SlideOut 1s both ease;
+}
+.Prev_SlideIn{
+	-webkit-animation: -webkit-Prev_SlideIn 1s both ease;
+	animation: Prev_SlideIn 1s both ease;
 }
 @keyframes Next_SlideOut {
 	from { }

@@ -12,13 +12,42 @@ $(document).ready(function(){
 		},
 		animEndEventName = animEndEventNames[ Modernizr.prefixed( 'animation' ) ]
 	var isanim = false;
-
+	/////////////////////////////////////////////////
+	//icons
+	for(var c = 0;c<numberOfPages;c++){
+		$('.iconsL').append("<li class='icon' id='i"+c+"'></li>");
+		console.log('O.o'+c)
+	}
+	/////////////////////////////////////////////////
 	$('.prevbt').click(function(){
-		$current.removeClass('current')
+		if(isanim)
+			return;
+		isanim=true;
 		counter=prevpagecounter(counter);
 		console.log(counter)
-		$current=$('#p'+counter)
-		$current.addClass('current');
+		$next=$('#p'+counter);
+		$current.addClass('Prev_SlideOut').on(animEndEventName,function(){
+			console.log('end c')
+			$current.off(animEndEventName)
+			
+		})
+
+			$next.addClass('current');
+			$next.addClass('Prev_SlideIn');
+		$next.on(animEndEventName,function(){
+				console.log('end n');
+				$current.removeClass('current');
+				$current.off(animEndEventName);
+				$next.off(animEndEventName);
+				$current.removeClass('Prev_SlideOut')
+				$next.removeClass('Prev_SlideIn')
+				setButtons(counter,numberOfPages);
+				isanim=false;
+				$next.off(animEndEventName);
+				$current=$next;
+
+			})
+		
 	})
 
 	$('.nextbt').on('click',function(){
@@ -43,6 +72,7 @@ $(document).ready(function(){
 				$next.off(animEndEventName);
 				$current.removeClass('Next_SlideOut')
 				$next.removeClass('Next_SlideIn')
+				setButtons(counter,numberOfPages);
 				isanim=false;
 				$next.off(animEndEventName);
 				$current=$next;
@@ -75,4 +105,17 @@ function whichTransitionEvent(){
             return transitions[t];
         }
     }
+}
+function setButtons(counter,numberOfPages){
+	if(counter==0){
+		$('.prevbt').attr('disabled','disabled');
+	}else{
+		$('.prevbt').removeAttr('disabled');
+	}
+	if(counter==numberOfPages-1){
+		$('.nextbt').attr('disabled','disabled');
+	}
+	else{
+		$('.nextbt').removeAttr('disabled');
+	}
 }
