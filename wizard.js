@@ -4,13 +4,14 @@ $(document).ready(function(){
 	$current.addClass('current');
 	var animend=whichTransitionEvent();
 	var numberOfPages=$(".main").children('.slide').length;
-	animEndEventNames = {
+	var animEndEventNames = {
 			'WebkitAnimation' : 'webkitAnimationEnd',
 			'OAnimation' : 'oAnimationEnd',
 			'msAnimation' : 'MSAnimationEnd',
 			'animation' : 'animationend'
 		},
 		animEndEventName = animEndEventNames[ Modernizr.prefixed( 'animation' ) ]
+	var isanim = false;
 
 	$('.prevbt').click(function(){
 		$current.removeClass('current')
@@ -21,7 +22,9 @@ $(document).ready(function(){
 	})
 
 	$('.nextbt').on('click',function(){
-		
+		if(isanim)
+			return;
+		isanim=true;
 		counter=nextpagecounter(counter);
 		console.log(counter)
 		$next=$('#p'+counter);
@@ -40,9 +43,10 @@ $(document).ready(function(){
 				$next.off(animEndEventName);
 				$current.removeClass('SlideOut')
 				$next.removeClass('SlideIn')
-				
+				isanim=false;
 				$next.off(animEndEventName);
 				$current=$next;
+
 			})
 		
 	})
