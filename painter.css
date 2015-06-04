@@ -77,28 +77,43 @@ main{
 	visibility: visible;
 	
 }
-.SlideOut{
-	-webkit-animation: -webkit-SlideOut 1s both ease;
-	animation: SlideOut 1s both ease;
+.Next_SlideOut{
+	-webkit-animation: -webkit-Next_SlideOut 1s both ease;
+	animation: Next_SlideOut 1s both ease;
 }
-.SlideIn{
-	-webkit-animation: -webkit-SlideIn 1s both ease;
-	animation: SlideIn 1s both ease;
+.Next_SlideIn{
+	-webkit-animation: -webkit-Next_SlideIn 1s both ease;
+	animation: Next_SlideIn 1s both ease;
 }
-@keyframes SlideOut {
+@keyframes Next_SlideOut {
 	from { }
-	to {  -webkit-transform:  translateX(-100%); transform:  translateX(-100%); }
+	to {  }
 }
 
-@-webkit-keyframes SlideOut {
+@-webkit-keyframes Next_SlideOut {
   	from{}
-	to{  -webkit-transform: translateX(-100%); }
+	to{   }
 }
-@-webkit-keyframes SlideIn {
+@-webkit-keyframes Next_SlideIn {
 	from { opacity: :0; -webkit-transform:  translateX(100%); }
 	
 }
-@keyframes SlideIn {
+@keyframes Next_SlideIn {
 	from { opacity: :0;-webkit-transform: translateX(100%); transform: translateX(100%); }
+}
+@keyframes Prev_SlideOut {
+	from { }
+	to { opacity: :0;-webkit-transform: translateX(100%); transform: translateX(100%);  }
+}
+
+@-webkit-keyframes Prev_SlideOut {
+  	from{}
+	to{  opacity: :0;-webkit-transform: translateX(100%); transform: translateX(100%);  }
+}
+@-webkit-keyframes Prev_SlideIn {
+	from { }
 	
+}
+@keyframes Prev_SlideIn {
+	from {  }
 }

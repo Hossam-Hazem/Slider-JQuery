@@ -28,21 +28,21 @@ $(document).ready(function(){
 		counter=nextpagecounter(counter);
 		console.log(counter)
 		$next=$('#p'+counter);
-		$current.addClass('SlideOut').on(animEndEventName,function(){
+		$current.addClass('Next_SlideOut').on(animEndEventName,function(){
 			console.log('end c')
 			$current.off(animEndEventName)
 			
 		})
 
 			$next.addClass('current');
-			$next.addClass('SlideIn');
+			$next.addClass('Next_SlideIn');
 		$next.on(animEndEventName,function(){
 				console.log('end n');
 				$current.removeClass('current');
 				$current.off(animEndEventName);
 				$next.off(animEndEventName);
-				$current.removeClass('SlideOut')
-				$next.removeClass('SlideIn')
+				$current.removeClass('Next_SlideOut')
+				$next.removeClass('Next_SlideIn')
 				isanim=false;
 				$next.off(animEndEventName);
 				$current=$next;
