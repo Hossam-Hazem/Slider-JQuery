@@ -27,8 +27,10 @@ $(document).ready(function(){
 
 		console.log(iconid);
 		var $next=$('#p'+iconid);
-		if(iconid==counter)
+		if(iconid==counter){
+			isanim=false;
 			return;
+		}
 		else{
 			$next.addClass('current');
 			if(iconid>counter){
