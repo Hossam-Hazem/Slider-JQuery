@@ -56,7 +56,7 @@ li{
 
 }
 .icon:hover{
-	background-position: -67px -7px;
+	background-position: -37px -7px !important;;
 }
 button{
 	border: none;
@@ -79,18 +79,19 @@ button{
 
 }
 #p0{
-	background: #0ac2d2;
+	background: #CFC291;
 	
 }
 #p1{
-	background: #7bb7fa;
+	background: #FFF6C5;
 }
 #p2{
-	background: green;
+	background: #A1E8D9;
 }
 #p3{
-	background: violet;
+	background: #FF712C;
 }
+
 .slide{
 	font-family: Georgia,serif;
 	font-size: 15em;

@@ -16,9 +16,53 @@ $(document).ready(function(){
 	//icons
 	for(var c = 0;c<numberOfPages;c++){
 		$('.iconsL').append("<li class='icon' id='i"+c+"'></li>");
-		console.log('O.o'+c)
 	}
+	$('#i0').css('background-position','-67px -7px');
+	$('.icon').click(function(){
+		if(isanim)
+			return;
+		isanim=true;
+		var iconid = $(this).attr('id');
+		iconid=parseInt(iconid.substring(1));
+
+		console.log(iconid);
+		var $next=$('#p'+iconid);
+		if(iconid==counter)
+			return;
+		else{
+			$next.addClass('current');
+			if(iconid>counter){
+				$current.addClass('Next_SlideOut');
+				$next.addClass('Next_SlideIn');
+			}
+			else{
+				$current.addClass('Prev_SlideOut');
+				$next.addClass('Prev_SlideIn');
+			}
+			$next.on(animEndEventName,function(){
+				$current.removeClass('current');
+				$next.off(animEndEventName);
+				$current.removeClass('Prev_SlideOut')
+				$next.removeClass('Prev_SlideIn')
+				$current.removeClass('Next_SlideOut')
+				$next.removeClass('Next_SlideIn')
+				$('.icons').trigger('iconpointer',[counter,iconid]);
+				counter=iconid;
+				setButtons(counter,numberOfPages);
+				isanim=false;
+				$next.off(animEndEventName);
+				$current=$next;
+				
+			}) 
+		}
+
+	})
+	$('.icons').on('iconpointer',function(event,param1,param2){
+		$('#i'+param2).css('background-position','-67px -7px');
+		$('#i'+param1).css('background-position','-7px -7px');
+	})
 	/////////////////////////////////////////////////
+	//previous button
 	$('.prevbt').click(function(){
 		if(isanim)
 			return;
@@ -36,6 +80,7 @@ $(document).ready(function(){
 			$next.addClass('Prev_SlideIn');
 		$next.on(animEndEventName,function(){
 				console.log('end n');
+				$('.icons').trigger('iconpointer',[counter+1,counter]);
 				$current.removeClass('current');
 				$current.off(animEndEventName);
 				$next.off(animEndEventName);
@@ -45,11 +90,12 @@ $(document).ready(function(){
 				isanim=false;
 				$next.off(animEndEventName);
 				$current=$next;
+				
 
 			})
 		
 	})
-
+	//////////////////////////////////////////////////////
 	$('.nextbt').on('click',function(){
 		if(isanim)
 			return;
@@ -67,6 +113,7 @@ $(document).ready(function(){
 			$next.addClass('Next_SlideIn');
 		$next.on(animEndEventName,function(){
 				console.log('end n');
+				$('.icons').trigger('iconpointer',[counter-1,counter]);
 				$current.removeClass('current');
 				$current.off(animEndEventName);
 				$next.off(animEndEventName);
@@ -76,10 +123,13 @@ $(document).ready(function(){
 				isanim=false;
 				$next.off(animEndEventName);
 				$current=$next;
+				
 
 			})
 		
 	})
+	////////////////////////////////////////////////////
+
 })
 	
 function nextpagecounter(current){
