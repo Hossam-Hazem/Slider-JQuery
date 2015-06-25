@@ -79,17 +79,17 @@ button{
 
 }
 #p0{
-	background: #003056;
+	background: #3853FF;
 	
 }
 #p1{
-	background: #04518C;
+	background: #337CE8;
 }
 #p2{
-	background: #00A1D9;
+	background: #45C1FF;
 }
 #p3{
-	background: #47D9BF;
+	background: #33DCE8;
 }
 
 .slide{
@@ -108,7 +108,7 @@ button{
 }
 .main{
 	position: relative;
-	width: 75%;
+	width: 100%;
 	height: 50%;
 	perspective: 1200px;
 	overflow: hidden;
