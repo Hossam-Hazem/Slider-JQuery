@@ -1,9 +1,14 @@
 $(document).ready(function(){
+	slider('.main');
+	slider('.main2');
+	});
+
+function slider(maindiv){
 	var counter=0;
-	var $current=$('#p'+counter)
+	var $current=$(maindiv+' #p'+counter)
 	$current.addClass('current');
 	var animend=whichTransitionEvent();
-	var numberOfPages=$(".main").children('.slide').length;
+	var numberOfPages=$(maindiv).children('.slide').length;
 	var animEndEventNames = {
 			'WebkitAnimation' : 'webkitAnimationEnd',
 			'OAnimation' : 'oAnimationEnd',
@@ -15,10 +20,10 @@ $(document).ready(function(){
 	/////////////////////////////////////////////////
 	//icons
 	for(var c = 0;c<numberOfPages;c++){
-		$('.iconsL').append("<li class='icon' id='i"+c+"'></li>");
+		$(maindiv+' .iconsL').append("<li class='icon' id='i"+c+"'></li>");
 	}
-	$('#i0').css('background-position','-67px -7px');
-	$('.icon').click(function(){
+	$(maindiv+' #i0').css('background-position','-67px -7px');
+	$(maindiv+' .icon').click(function(){
 		if(isanim)
 			return;
 		isanim=true;
@@ -26,7 +31,7 @@ $(document).ready(function(){
 		iconid=parseInt(iconid.substring(1));
 
 		console.log(iconid);
-		var $next=$('#p'+iconid);
+		var $next=$(maindiv+' #p'+iconid);
 		if(iconid==counter){
 			isanim=false;
 			return;
@@ -48,7 +53,7 @@ $(document).ready(function(){
 				$next.removeClass('Prev_SlideIn')
 				$current.removeClass('Next_SlideOut')
 				$next.removeClass('Next_SlideIn')
-				$('.icons').trigger('iconpointer',[counter,iconid]);
+				$(maindiv+' .icons').trigger('iconpointer',[counter,iconid]);
 				counter=iconid;
 				setButtons(counter,numberOfPages);
 				isanim=false;
@@ -59,19 +64,19 @@ $(document).ready(function(){
 		}
 
 	})
-	$('.icons').on('iconpointer',function(event,param1,param2){
-		$('#i'+param2).css('background-position','-67px -7px');
-		$('#i'+param1).css('background-position','-7px -7px');
+	$(maindiv+' .icons').on('iconpointer',function(event,param1,param2){
+		$(maindiv+' #i'+param2).css('background-position','-67px -7px');
+		$(maindiv+' #i'+param1).css('background-position','-7px -7px');
 	})
 	/////////////////////////////////////////////////
 	//previous button
-	$('.prevbt').click(function(){
+	$(maindiv+' .prevbt').click(function(){
 		if(isanim)
 			return;
 		isanim=true;
 		counter=prevpagecounter(counter);
 		console.log(counter)
-		$next=$('#p'+counter);
+		$next=$(maindiv+' #p'+counter);
 		$current.addClass('Prev_SlideOut').on(animEndEventName,function(){
 			console.log('end c')
 			$current.off(animEndEventName)
@@ -82,7 +87,7 @@ $(document).ready(function(){
 			$next.addClass('Prev_SlideIn');
 		$next.on(animEndEventName,function(){
 				console.log('end n');
-				$('.icons').trigger('iconpointer',[counter+1,counter]);
+				$(maindiv+' .icons').trigger('iconpointer',[counter+1,counter]);
 				$current.removeClass('current');
 				$current.off(animEndEventName);
 				$next.off(animEndEventName);
@@ -98,13 +103,13 @@ $(document).ready(function(){
 		
 	})
 	//////////////////////////////////////////////////////
-	$('.nextbt').on('click',function(){
+	$(maindiv+' .nextbt').on('click',function(){
 		if(isanim)
 			return;
 		isanim=true;
 		counter=nextpagecounter(counter);
 		console.log(counter)
-		$next=$('#p'+counter);
+		$next=$(maindiv+' #p'+counter);
 		$current.addClass('Next_SlideOut').on(animEndEventName,function(){
 			console.log('end c')
 			$current.off(animEndEventName)
@@ -115,7 +120,7 @@ $(document).ready(function(){
 			$next.addClass('Next_SlideIn');
 		$next.on(animEndEventName,function(){
 				console.log('end n');
-				$('.icons').trigger('iconpointer',[counter-1,counter]);
+				$(maindiv+' .icons').trigger('iconpointer',[counter-1,counter]);
 				$current.removeClass('current');
 				$current.off(animEndEventName);
 				$next.off(animEndEventName);
@@ -132,14 +137,14 @@ $(document).ready(function(){
 	})
 	////////////////////////////////////////////////////
 
-})
+
 	
 function nextpagecounter(current){
-	var numberOfPages=$(".main").children('.slide').length;
+	var numberOfPages=$(maindiv).children('.slide').length;
 	return (((current+1)%numberOfPages)+numberOfPages)%numberOfPages;
 }
 function prevpagecounter(current){
-	var numberOfPages=$(".main").children('.slide').length;
+	var numberOfPages=$(maindiv).children('.slide').length;
 	return (((current-1)%numberOfPages)+numberOfPages)%numberOfPages;
 }
 function whichTransitionEvent(){
@@ -160,14 +165,15 @@ function whichTransitionEvent(){
 }
 function setButtons(counter,numberOfPages){
 	if(counter==0){
-		$('.prevbt').attr('disabled','disabled');
+		$(maindiv+' .prevbt').attr('disabled','disabled');
 	}else{
-		$('.prevbt').removeAttr('disabled');
+		$(maindiv+' .prevbt').removeAttr('disabled');
 	}
 	if(counter==numberOfPages-1){
-		$('.nextbt').attr('disabled','disabled');
+		$(maindiv+' .nextbt').attr('disabled','disabled');
 	}
 	else{
-		$('.nextbt').removeAttr('disabled');
+		$(maindiv+' .nextbt').removeAttr('disabled');
 	}
+}
 }

@@ -116,6 +116,16 @@ button{
 	border-radius: 3%
 
 }
+.main2{
+	position: absolute;
+	top: 60%;
+	width: 75%;
+	height: 30%;
+	perspective: 1200px;
+	overflow: hidden;
+	transform-style: preserve-3d;
+	border-radius: 3%;
+}
 .current{
 	visibility: visible;
 	
